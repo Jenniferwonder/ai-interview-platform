@@ -26,7 +26,8 @@
 - 📝 **支撑笔记**：每个改动对应的源码分析链路和设计思路，写到「别人照着能复现」的程度
 - 🐛 **踩坑记录**：环境搭建中的实际问题诊断与修复过程
 
-> 完整的学习路线（本项目值得深挖的技术亮点 + 我要额外补齐的生产化能力）见 [LEARNING_PLAN.md](my-learning/LEARNING_PLAN.md)。
+> 完整的学习路线（本项目值得深挖的技术亮点 + 我要额外补齐的生产化能力）见 [LEARNING_PLAN.md](my-learning/LEARNING_PLAN.md)。  
+> 产品功能总览（各模块能力 + 流程图）见 [ai-interview-platform-features.md](my-learning/ai-interview-platform-features.md)。
 
 ---
 

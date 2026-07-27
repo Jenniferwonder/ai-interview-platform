@@ -8,7 +8,8 @@
 
 ## 交付物路线
 
-完整计划见 [../LEARNING_PLAN.md](LEARNING_PLAN.md)。
+完整计划见 [LEARNING_PLAN.md](LEARNING_PLAN.md)。  
+产品功能总览见 [ai-interview-platform-features.md](ai-interview-platform-features.md)。
 
 | # | 交付物 | 核心问题 | 产出 |
 |---|--------|----------|:--:|
