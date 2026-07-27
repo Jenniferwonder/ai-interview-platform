@@ -32,8 +32,9 @@
 | [04 RAG 检索增强全链路](notes/04-rag-pipeline.md) | 交付物 3、6 |
 | [05 Redis Stream 异步任务](notes/05-redis-stream-async.md) | 交付物 2 |
 | [06 实时语音通信](notes/06-voice-interview.md) | 交付物 5 |
-| [07 JPA ddl-auto 与数据丢失](notes/07-jpa-ddl-auto.md) | 交付物 0（持久化踩坑） |
-| [08 面试列表投影优化](notes/08-interview-list-projection.md) | L1 三层地基（已分析，代码待落地） |
+| [07 JPA ddl-auto 与数据丢失](notes/07-jpa-ddl-auto.md) | L0（持久化踩坑） |
+| [08 面试列表投影优化](notes/08-interview-list-projection.md) | 留档（常规查询优化，非任务） |
+| [10 Spring Boot 三层地基](notes/10-spring-backend-foundations.md) | L1 ✅ |
 
 ---
 

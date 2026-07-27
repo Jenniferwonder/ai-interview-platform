@@ -23,6 +23,11 @@ public interface InterviewSessionRepository extends JpaRepository<InterviewSessi
     Optional<InterviewSessionEntity> findBySessionId(String sessionId);
 
     /**
+     * 会话是否存在（派生查询；列表/删除前可先做轻量存在性判断）
+     */
+    boolean existsBySessionId(String sessionId);
+
+    /**
      * 根据会话ID查找（同时加载关联的简历）
      */
     @Query("SELECT s FROM InterviewSessionEntity s LEFT JOIN FETCH s.resume WHERE s.sessionId = :sessionId")

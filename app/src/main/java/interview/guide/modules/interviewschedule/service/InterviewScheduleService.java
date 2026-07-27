@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -68,7 +67,7 @@ public class InterviewScheduleService {
 
         return entities.stream()
             .map(this::toDTO)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     public InterviewScheduleDTO getById(Long id) {

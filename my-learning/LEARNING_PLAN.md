@@ -37,7 +37,7 @@
 | # | 主题 | 读什么（核心源码） | 要建立的概念 | 我的小验证 | 笔记 |
 |---|------|-------------------|-------------|-----------|:--:|
 | L0 | 环境与工程基建 ✅ | `docker-compose.dev.yml`、启动日志 | Compose 编排、端口/依赖排查、ddl-auto 陷阱 | 已完成 | `01`·`07` |
-| L1 | Spring Boot 三层地基 | `interview` 模块 Controller/Service/Repository；`common/result`、`common/exception`、`common/config/*Properties` | DI 与构造器注入、`@Transactional` 边界、派生查询、`Result<T>`、全局异常体系 | 加一个派生查询 + 单测；讲清「事务不含 LLM/HTTP」 | `10` |
+| L1 | Spring Boot 三层地基 | `interview` 模块 Controller/Service/Repository；`common/result`、`common/exception`、`common/config/*Properties` | DI 与构造器注入、`@Transactional` 边界、派生查询、`Result<T>`、全局异常体系 | 已完成：笔记 `10` + `existsBySessionId` 派生查询 | `10` ✅ |
 | L2 | Spring AI 多 Provider | `common/ai/LlmProviderRegistry`、`LlmProviderProperties`、`ApiPathResolver`、`modules/llmprovider/*` | `ChatClient`/`ChatModel`、OpenAI 兼容协议、Advisor、多 Provider 抽象、密钥加密 | 加一个 OpenAI 兼容 Provider，验证运行时切换/回退 | `02` |
 | L3 | 结构化输出与可靠性 | `common/ai/StructuredOutputInvoker`、`StructuredOutputProperties`、`ResumeGradingService` | LLM JSON 不可靠、`BeanOutputConverter`、重试/降级、判别边界 | 制造坏 JSON，观察重试与指标变化 | `02` |
 | L4 | Prompt 工程与注入防护 | `common/ai/PromptSanitizer`、`PromptSecurityConstants`、`resources/prompts/*.st` | 模板化管理、注入攻击与防护、system/user 分离 | 写恶意输入用例验证 sanitizer | `11` |
@@ -110,7 +110,7 @@ flowchart TD
 | 项 | 笔记 | 状态 |
 |----|------|:--:|
 | L0 | `01-env-setup` · `07-jpa-ddl-auto` | ✅ 完成 |
-| L1 | `10-spring-backend-foundations` | ⬜ 待新增 |
+| L1 | `10-spring-backend-foundations` | ✅ 完成 |
 | L2 · L3 | `02-spring-ai-provider` | 🟡 已有，待增补 |
 | L4 | `11-prompt-engineering-security` | ⬜ 待新增 |
 | L5 | `04-rag-pipeline` | 🟡 已有，待增补 |
