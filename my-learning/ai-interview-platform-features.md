@@ -2,7 +2,8 @@
 
 > 项目：`ai-interview-platform`（仓库 [interview-guide](https://github.com/Snailclimb/interview-guide) 学习型 fork）  
 > 定位：面向求职准备的 **AI 全栈应用**——简历分析、文字/语音模拟面试、知识库 RAG 问答、面试日程管理，以及可配置的多模型服务。  
-> 技术栈概览：Spring Boot 4.1 + Java 21 + Spring AI 2.0 + PostgreSQL/pgvector + Redis + React 18 / TypeScript / Vite
+> 技术栈概览：Spring Boot 4.1 + Java 21 + Spring AI 2.0 + PostgreSQL/pgvector + Redis + React 18 / TypeScript / Vite  
+> 库表字段与关系详见 [database-schema.md](database-schema.md)。
 
 ---
 

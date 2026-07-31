@@ -9,7 +9,8 @@
 ## 交付物路线
 
 完整计划见 [LEARNING_PLAN.md](LEARNING_PLAN.md)。  
-产品功能总览见 [ai-interview-platform-features.md](ai-interview-platform-features.md)。
+产品功能总览见 [ai-interview-platform-features.md](ai-interview-platform-features.md)。  
+库表设计与模块逻辑见 [database-schema.md](database-schema.md)。
 
 | # | 交付物 | 核心问题 | 产出 |
 |---|--------|----------|:--:|
