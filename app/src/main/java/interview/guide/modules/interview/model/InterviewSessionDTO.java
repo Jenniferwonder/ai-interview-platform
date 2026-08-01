@@ -11,7 +11,9 @@ public record InterviewSessionDTO(
     int totalQuestions,
     int currentQuestionIndex,
     List<InterviewQuestionDTO> questions,
-    SessionStatus status
+    SessionStatus status,
+    Long knowledgeBaseId,
+    String interviewCategory
 ) {
     public enum SessionStatus {
         CREATED,      // 会话已创建
