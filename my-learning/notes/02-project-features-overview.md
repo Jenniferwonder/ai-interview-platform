@@ -372,4 +372,4 @@ flowchart TB
 | 日程 | `modules/interviewschedule` | `InterviewSchedulePage` |
 | 模型配置 | `modules/llmprovider` | `SettingsPage` |
 
-本文专注**产品功能说明**；各模块背后的技术要点从 [04 Spring Boot 地基](04-spring-boot-foundations.md) 起逐篇展开，索引见 [笔记总览](../README.md)。
+本文专注**产品功能说明**；各模块背后的技术要点见 [按业务模块](modules/README.md) 与 [按核心技术问答](tech-qa/README.md)，索引见 [笔记总览](../README.md)。

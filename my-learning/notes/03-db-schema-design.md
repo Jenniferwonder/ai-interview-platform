@@ -2,7 +2,7 @@
 
 > 基于 JPA Entity + Spring AI PgVectorStore 梳理（开发环境 `ddl-auto=update` / `initialize-schema=true` 自动建表）。  
 > 实体包根路径：`app/src/main/java/interview/guide/modules/`  
-> 上一篇：[02 功能全景](02-project-features-overview.md)；持久化踩坑见 [05 JPA 实操](05-jpa-persistence.md)。
+> 上一篇：[02 功能全景](02-project-features-overview.md)；持久化踩坑见 [tech-qa/02 JPA 与事务](tech-qa/02-jpa-transaction.md)。
 
 ---
 

@@ -22,12 +22,19 @@
 我将项目拆解为若干**工程级交付物**，每个都超越"加个配置就能跑"的层面，而是**发现真实问题 → 加指标/日志 → 定位根因 → 写代码改 → 验证效果 → 输出数据**的完整工程闭环。
 
 输出形式：
-- 🛠️ **代码改动**：可追溯的 git diff，每个交付物有完整的实现 + 测试 + 效果数据
-- 📝 **支撑笔记**：每个改动对应的源码分析链路和设计思路，写到「别人照着能复现」的程度
+- 🛠️ **代码改动**：可追溯的 git diff，每个交付物有完整的实现 + 测试 + 效果数据（见 `my-learning/code-changes/`）
+- 📝 **支撑笔记**：按「项目全貌 → 业务模块 → 技术问答」三层组织（见下），锚定真实源码路径——能顺着链路讲清模块怎么走、能指到文件回答技术问题、并把踩过的坑和取舍写明白
 - 🐛 **踩坑记录**：环境搭建中的实际问题诊断与修复过程
 
-> 完整的学习路线（本项目值得深挖的技术亮点 + 我要额外补齐的生产化能力）见 [LEARNING_PLAN.md](my-learning/LEARNING_PLAN.md)。  
-> 笔记按阅读顺序编号，入门三篇：[01 本地启动](my-learning/notes/01-env-setup.md) → [02 功能全景](my-learning/notes/02-project-features-overview.md) → [03 库表设计](my-learning/notes/03-db-schema-design.md)，完整索引见 [my-learning/README.md](my-learning/README.md)。
+> 完整学习路线（L 深挖已有亮点 + G 补齐生产化缺口）见 [LEARNING_PLAN.md](my-learning/LEARNING_PLAN.md)。笔记索引见 [my-learning/README.md](my-learning/README.md)。
+
+**支撑笔记怎么读**（`my-learning/notes/`）：
+
+| 层 | 目录 | 干什么 |
+|----|------|--------|
+| 项目全貌 | `notes/01–03` | 本地启动 → 功能全景 → 库表设计，先把项目跑起来、看懂全貌 |
+| 方向一 | [`notes/modules/`](my-learning/notes/modules/README.md) | 按业务模块（简历 / 文字问答 / 语音 / RAG / 日程 / 模型配置）讲清一条链路用到了哪些技术 |
+| 方向二 | [`notes/tech-qa/`](my-learning/notes/tech-qa/README.md) | 按核心技术（Spring Boot / JPA / Redis / LLM / Prompt / RAG / Tool-Calling / 流式与异步 / 存储 / 限流与可观测 / AI 质量）整理高频问答：问题 → 简答 → 本仓库落点 |
 
 ---
 
@@ -37,31 +44,33 @@
 
 ### L 系列 · 深挖项目已有实现
 
+> 状态：✅ 完成 · 📝 笔记已成篇、动手项待做 · ⬜ 未开始
+
 | # | 主题 | 我要读懂/验证的核心 | 笔记 | 状态 |
 |---|------|----------------------|------|:--:|
-| L0 | 环境与工程基建 | Docker Compose 编排、端口排查、ddl-auto 陷阱 | [01](my-learning/notes/01-env-setup.md) · [05](my-learning/notes/05-jpa-persistence.md) | ✅ |
-| L1 | Spring Boot 三层地基 | DI / 事务边界 / 派生查询 / 异常体系 | [04](my-learning/notes/04-spring-boot-foundations.md) | ✅ |
-| L2 | Spring AI 多 Provider | ChatClient 缓存、回退、Advisor、密钥加密 | [08](my-learning/notes/08-llm-provider-integration.md) | ⬜ |
-| L3 | 结构化输出与可靠性 | 重试循环、schema 校验、`BeanOutputConverter` | [08](my-learning/notes/08-llm-provider-integration.md) | ⬜ |
-| L4 | Prompt 工程与注入防护 | 模板化、sanitizer、system/user 分离 | `notes/12`（计划） | ⬜ |
-| L5 | RAG 检索增强全链路 | 向量化、Query Rewrite、TopK/阈值 | [09](my-learning/notes/09-rag-pipeline.md) | ⬜ |
-| L6 | Agent / 工具调用 | tool-calling 原理、技能编排 | `notes/13`（计划） | ⬜ |
-| L7 | Redis Stream 异步 | 消费者组、ACK、Pending 回收、死信 | [06](my-learning/notes/06-redis-stream-async.md) | ⬜ |
-| L8 | 限流与 AOP | Lua 原子限流、注解驱动、多维度 | `notes/14`（计划） | ⬜ |
-| L9 | 实时语音 WebSocket | VAD 断句、级联管线、首包延迟 | [11](my-learning/notes/11-voice-realtime.md) | ⬜ |
-| L10 | 统一评估 + 文件/导出 | 共用评估、S3、Tika 解析、MapStruct | [10](my-learning/notes/10-evaluation-engine.md) · [07](my-learning/notes/07-file-storage-parsing.md) | ⬜ |
+| L0 | 环境与工程基建 | Docker Compose 编排、端口排查、ddl-auto 陷阱 | [01](my-learning/notes/01-env-setup.md) · [tech-qa/02](my-learning/notes/tech-qa/02-jpa-transaction.md) | ✅ |
+| L1 | Spring Boot 三层地基 | DI / 事务边界 / 派生查询 / 异常体系 | [tech-qa/01](my-learning/notes/tech-qa/01-spring-boot.md) | ✅ |
+| L2 | Spring AI 多 Provider | ChatClient 缓存、回退、Advisor、密钥加密 | [modules/06](my-learning/notes/modules/06-llmprovider.md) · [tech-qa/04](my-learning/notes/tech-qa/04-llm-integration.md) | 📝 |
+| L3 | 结构化输出与可靠性 | 重试循环、schema 校验、`BeanOutputConverter` | [tech-qa/11](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) | 📝 |
+| L4 | Prompt 工程与注入防护 | 模板化、sanitizer、system/user 分离 | [tech-qa/05](my-learning/notes/tech-qa/05-prompt-engineering.md) | 📝 |
+| L5 | RAG 检索增强全链路 | 向量化、Query Rewrite、TopK/阈值 | [modules/04](my-learning/notes/modules/04-knowledgebase.md) · [tech-qa/06](my-learning/notes/tech-qa/06-rag.md) | 📝 |
+| L6 | Agent / 工具调用 | tool-calling 原理、技能编排 | [tech-qa/07](my-learning/notes/tech-qa/07-tool-calling-agent.md) | 📝 |
+| L7 | Redis Stream 异步 | 消费者组、ACK、Pending 回收、死信 | [tech-qa/03](my-learning/notes/tech-qa/03-redis.md) | 📝 |
+| L8 | 限流与 AOP | Lua 滑动窗口、注解驱动、多维度 | [tech-qa/10](my-learning/notes/tech-qa/10-observability-rate-limit.md) | 📝 |
+| L9 | 实时语音 WebSocket | VAD 断句、级联管线、首包延迟 | [modules/03](my-learning/notes/modules/03-voiceinterview.md) · [tech-qa/08](my-learning/notes/tech-qa/08-ai-app-dev-workflow.md) | 📝 |
+| L10 | 统一评估 + 文件/导出 | 共用评估、S3、Tika 解析、iText | [tech-qa/11](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) · [tech-qa/09](my-learning/notes/tech-qa/09-file-storage-parsing.md) | 📝 |
 
 ### G 系列 · 补齐项目没覆盖的生产化能力
 
 | # | 主题 | 项目现状 → 我要加什么 | 笔记 | 状态 |
 |---|------|------------------------|------|:--:|
-| G1 | 认证与鉴权 | 接口裸奔 → Spring Security + JWT + `@PreAuthorize` | `notes/15`（计划） | ⬜ |
-| G2 | 数据库迁移 | 靠 ddl-auto → Flyway 版本化迁移 + `validate` | `notes/16`（计划） | ⬜ |
-| G3 | 分布式追踪 | 只有指标 → micrometer-tracing + traceId 串链路 | `notes/17`（计划） | ⬜ |
-| G4 | 测试体系 | 多 @Disabled → Testcontainers 起真 Redis/PG 跑全链路 | [06 增补](my-learning/notes/06-redis-stream-async.md) | ⬜ |
-| G5 | AI 质量评估 | 有评分无 eval → 建评测集，量化 faithfulness/命中率 | `notes/18`（计划） | ⬜ |
-| G6 | 容器化与 CI | 有 compose 无流水线 → 多阶段 Dockerfile + GitHub Actions | `notes/19`（计划） | ⬜ |
-| G7 | SSE 流式可靠性 | 断网丢内容 → 指数退避重试 + 内容不丢 | [09 增补](my-learning/notes/09-rag-pipeline.md) | ⬜ |
+| G1 | 认证与鉴权 | 接口裸奔 → Spring Security + JWT + `@PreAuthorize` | 待新增 | ⬜ |
+| G2 | 数据库迁移 | 靠 ddl-auto → Flyway 版本化迁移 + `validate` | [tech-qa/02 缺口](my-learning/notes/tech-qa/02-jpa-transaction.md) | ⬜ |
+| G3 | 分布式追踪 | 只有指标 → micrometer-tracing + traceId 串链路 | [tech-qa/10 缺口](my-learning/notes/tech-qa/10-observability-rate-limit.md) | ⬜ |
+| G4 | 测试体系 | 多 @Disabled → Testcontainers 起真 Redis/PG 跑全链路 | [modules/01 增补](my-learning/notes/modules/01-resume.md) | ⬜ |
+| G5 | AI 质量评估 | 有评分无 eval → 建评测集，量化 faithfulness/命中率 | [tech-qa/11 最小方案](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) | ⬜ |
+| G6 | 容器化与 CI | 有 compose 无流水线 → 多阶段 Dockerfile + GitHub Actions | 待新增 | ⬜ |
+| G7 | SSE 流式可靠性 | 断网丢内容 → 指数退避重试 + 内容不丢 | [tech-qa/08 缺口](my-learning/notes/tech-qa/08-ai-app-dev-workflow.md) | ⬜ |
 
 ---
 
@@ -100,8 +109,12 @@
 ├── README.md              👈 学习产出首页
 ├── my-learning/
 │   ├── LEARNING_PLAN.md   完整学习路线（L 深挖亮点 + G 补齐缺口）
-│   ├── notes/             支撑笔记（按 L/G 主题引用）
-│   ├── code-changes/      代码改动（按主题组织，git diff 可追溯）
+│   ├── README.md          笔记与交付物总索引
+│   ├── notes/
+│   │   ├── 01–03          项目全貌：启动 / 功能全景 / 库表
+│   │   ├── modules/       方向一：按业务模块的技术要点
+│   │   └── tech-qa/       方向二：按核心技术的高频问答
+│   ├── code-changes/      交付物对应的代码改动与会话清单
 │   └── demos/             独立可运行示例（可选）
 │
 ├── app/                   原项目后端源码（Spring Boot）
