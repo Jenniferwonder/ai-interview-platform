@@ -1,9 +1,9 @@
-# AI Interview Platform — 功能介绍
+# 02 · 项目各模块全功能概览
 
 > 项目：`ai-interview-platform`（仓库 [interview-guide](https://github.com/Snailclimb/interview-guide) 学习型 fork）  
-> 定位：面向求职准备的 **AI 全栈应用**——简历分析、文字/语音模拟面试、知识库 RAG 问答、面试日程管理，以及可配置的多模型服务。  
+> 定位：**AI 全栈应用**——简历分析、文字/语音模拟问答、知识库 RAG 问答、日程管理，以及可配置的多模型服务。  
 > 技术栈概览：Spring Boot 4.1 + Java 21 + Spring AI 2.0 + PostgreSQL/pgvector + Redis + React 18 / TypeScript / Vite  
-> 库表字段与关系详见 [database-schema.md](database-schema.md)。
+> 上一篇：[01 本地启动](01-env-setup.md)；下一篇：[03 库表设计](03-db-schema-design.md)。
 
 ---
 
@@ -372,4 +372,4 @@ flowchart TB
 | 日程 | `modules/interviewschedule` | `InterviewSchedulePage` |
 | 模型配置 | `modules/llmprovider` | `SettingsPage` |
 
-更细的工程学习笔记见 [`README.md`](README.md)；本文专注**产品功能说明**。
+本文专注**产品功能说明**；各模块背后的技术要点从 [04 Spring Boot 地基](04-spring-boot-foundations.md) 起逐篇展开，索引见 [笔记总览](../README.md)。

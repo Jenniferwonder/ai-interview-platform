@@ -9,8 +9,7 @@
 ## 交付物路线
 
 完整计划见 [LEARNING_PLAN.md](LEARNING_PLAN.md)。  
-产品功能总览见 [ai-interview-platform-features.md](ai-interview-platform-features.md)。  
-库表设计与模块逻辑见 [database-schema.md](database-schema.md)。
+笔记按「跑起来 → 看懂功能 → 看懂数据 → 逐个技术要点」排序，建议从 [01](notes/01-env-setup.md) 顺读。
 
 | # | 交付物 | 核心问题 | 产出 |
 |---|--------|----------|:--:|
@@ -24,19 +23,32 @@
 
 ---
 
-## 支撑笔记
+## 笔记索引
 
-| 笔记 | 对应交付物 |
-|------|-----------|
-| [01 环境搭建](notes/01-env-setup.md) | 交付物 0 |
-| [02 Spring AI 多 Provider 管理](notes/02-spring-ai-provider.md) | 交付物 1 |
-| [03 统一评估引擎](notes/03-unified-evaluation.md) | 交付物 3、4 |
-| [04 RAG 检索增强全链路](notes/04-rag-pipeline.md) | 交付物 3、6 |
-| [05 Redis Stream 异步任务](notes/05-redis-stream-async.md) | 交付物 2 |
-| [06 实时语音通信](notes/06-voice-interview.md) | 交付物 5 |
-| [07 JPA ddl-auto 与数据丢失](notes/07-jpa-ddl-auto.md) | L0（持久化踩坑） |
-| [08 面试列表投影优化](notes/08-interview-list-projection.md) | 留档（常规查询优化，非任务） |
-| [10 Spring Boot 三层地基](notes/10-spring-backend-foundations.md) | L1 ✅ |
+**① 先跑起来、看懂全貌**
+
+| 笔记 | 讲什么 | 状态 |
+|------|--------|:--:|
+| [01 项目前后端本地启动](notes/01-env-setup.md) | Docker 基础设施 + 后端/前端启动 + 8 个启动踩坑 | ✅ |
+| [02 项目各模块全功能概览](notes/02-project-features-overview.md) | 六大模块能力、页面路由、流程图 | ✅ |
+| [03 数据库库表设计](notes/03-db-schema-design.md) | 15 张表字段、关系、状态机 | ✅ |
+
+**② 各功能模块的技术要点与踩坑**
+
+| 笔记 | 讲什么 | 状态 |
+|------|--------|:--:|
+| [04 Spring Boot 三层地基](notes/04-spring-boot-foundations.md) | 分层、DI、事务边界、统一响应/异常、JPA 入门 | ✅ |
+| [05 JPA 持久化实操](notes/05-jpa-persistence.md) | `ddl-auto` 丢数据、列表查询 DTO 投影 | ✅ |
+| [06 Redis 与 Redis Stream](notes/06-redis-stream-async.md) | Redis/Redisson、消费者组、ACK、重试与死信 | ✅ |
+| [07 对象存储与文档解析](notes/07-file-storage-parsing.md) | RustFS/S3 path-style、哈希去重、Tika、PDF 导出 | ✅ |
+| [08 Spring AI 多 Provider](notes/08-llm-provider-integration.md) | Registry 缓存、结构化输出重试、密钥加密 | 🟡 待增补 |
+| [09 RAG 检索增强全链路](notes/09-rag-pipeline.md) | 分块、Embedding、Query Rewrite、TopK、SSE | 🟡 待增补 |
+| [10 统一评估引擎](notes/10-evaluation-engine.md) | 分批评估、二次汇总、降级兜底 | 🟡 待增补 |
+| [11 实时语音链路](notes/11-voice-realtime.md) | WebSocket、ASR/LLM/TTS 级联、VAD、首包延迟 | 🟡 待增补 |
+
+**③ 计划中（编号续排）**
+
+`12` Prompt 工程与注入防护 · `13` Agent 工具调用 · `14` 限流与 AOP · `15` 认证鉴权 · `16` Flyway 迁移 · `17` 追踪与可观测 · `18` RAG 质量评估 · `19` 容器化与 CI
 
 ---
 

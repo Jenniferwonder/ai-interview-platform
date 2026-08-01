@@ -1,10 +1,11 @@
-# Redis Stream 异步任务模板
+# 06 · Redis 与 Redis Stream 异步任务
 
-> 对应源码：`common/async/AbstractStreamProducer.java`、`AbstractStreamConsumer.java`、`AsyncTaskStreamConstants.java`、各模块 `listener/` 包
+> 对应源码：`common/async/AbstractStreamProducer.java`、`AbstractStreamConsumer.java`、`AsyncTaskStreamConstants.java`、各模块 `listener/` 包  
+> 前置：[04 Spring Boot 三层地基](04-spring-boot-foundations.md)（事务边界为什么不能包住外部调用）
 
 ## 设计目标
 
-将耗时操作（简历分析、面试评估、文档向量化）从请求线程中剥离，通过 Redis Stream 解耦生产与消费。
+将耗时操作（简历分析、问答评估、文档向量化）从请求线程中剥离，通过 Redis Stream 解耦生产与消费。
 
 ## 核心模板类
 
@@ -89,7 +90,7 @@ redis-cli -h 127.0.0.1 -p 6379 command info xautoclaim
 
 `docker exec interview-redis redis-cli INFO` 只能证明容器内版本；bootRun 在宿主机时连的是 `localhost:6379` 上**实际响应**的那个进程。
 
-环境侧诊断与处理见 [01 环境搭建 §问题 3](01-env-setup.md)。
+环境侧诊断与处理见 [01 本地启动 §问题 3](01-env-setup.md)。
 
 ## 核心要点
 

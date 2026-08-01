@@ -1,6 +1,7 @@
-# RAG 检索增强全链路
+# 09 · RAG 检索增强全链路
 
-> 对应源码：`modules/knowledgebase/`、`prompts/knowledgebase-query-*.st`、pgvector 配置
+> 对应源码：`modules/knowledgebase/`、`prompts/knowledgebase-query-*.st`、pgvector 配置  
+> 上游：文档怎么进来见 [07 对象存储与文档解析](07-file-storage-parsing.md)；向量表结构见 [03 库表设计 §4.4](03-db-schema-design.md)。
 
 ## 全链路流程
 

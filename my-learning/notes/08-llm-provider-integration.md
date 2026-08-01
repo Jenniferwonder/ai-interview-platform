@@ -1,6 +1,7 @@
-# Spring AI 多 Provider 管理
+# 08 · Spring AI 多 Provider 接入与结构化输出
 
-> 对应源码：`common/ai/LlmProviderRegistry.java`、`StructuredOutputInvoker.java`、`ApiPathResolver.java`、`modules/llmprovider/`
+> 对应源码：`common/ai/LlmProviderRegistry.java`、`StructuredOutputInvoker.java`、`ApiPathResolver.java`、`modules/llmprovider/`  
+> Provider 配置怎么落库（含密钥加密字段）见 [03 库表设计 §6](03-db-schema-design.md)。
 
 ## 设计目标
 

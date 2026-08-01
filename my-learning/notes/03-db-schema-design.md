@@ -1,8 +1,8 @@
-# AI Interview Platform — 库表设计与模块逻辑
+# 03 · 数据库库表设计与模块逻辑
 
 > 基于 JPA Entity + Spring AI PgVectorStore 梳理（开发环境 `ddl-auto=update` / `initialize-schema=true` 自动建表）。  
 > 实体包根路径：`app/src/main/java/interview/guide/modules/`  
-> 配套功能说明：[ai-interview-platform-features.md](ai-interview-platform-features.md)
+> 上一篇：[02 功能全景](02-project-features-overview.md)；持久化踩坑见 [05 JPA 实操](05-jpa-persistence.md)。
 
 ---
 

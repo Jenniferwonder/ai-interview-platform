@@ -1,6 +1,7 @@
-# 实时语音面试
+# 11 · 实时语音链路（WebSocket + ASR/LLM/TTS）
 
-> 对应源码：`modules/voiceinterview/`、DashScope SDK 集成、WebSocket Handler
+> 对应源码：`modules/voiceinterview/`、DashScope SDK 集成、WebSocket Handler  
+> 结束后的评估复用 [10 统一评估引擎](10-evaluation-engine.md)。
 
 ## 架构概览
 

@@ -1,8 +1,8 @@
-# L1 · Spring Boot 三层架构地基
+# 04 · Spring Boot 三层架构地基
 
 > 对应学习项：LEARNING_PLAN **L1**  
 > 对照通用笔记：本地 `TechSkills/.../spring-framework/SpringBoot.md`（概念 + 高频问答）  
-> 本文：把同一套概念钉到 **本仓库真实代码**上——读懂一条请求怎么走完、事务边界在哪、统一响应/异常怎么接。
+> 本文：把同一套概念钉到 **本仓库真实代码**上——读懂一条请求怎么走完、事务边界在哪、统一响应/异常怎么接。这也是「4 起技术要点」系列的第一篇，后续的 Redis、存储、AI 各篇都建立在这套分层之上。
 
 ## 我要建立的能力
 
@@ -13,7 +13,7 @@
 3. 说清 **`@Transactional` 边界**：短 DB 临界区可以包；**LLM / HTTP / Redis Stream 发送不要包进同一事务**  
 4. 用 `Result<T>` + `BusinessException` + `GlobalExceptionHandler` 讲统一响应与全局异常  
 5. 指出配置应走 `@ConfigurationProperties`，而不是在 Service 里散落 `@Value`  
-6. 认出 Spring Data JPA **派生查询**，并知道列表场景别滥用 `findAll()`（详见 [08](08-interview-list-projection.md)）
+6. 认出 Spring Data JPA **派生查询**，并知道列表场景别滥用 `findAll()`（详见 [05](05-jpa-persistence.md)）
 
 ---
 
@@ -189,7 +189,7 @@ app:
     warmup-opening-audio-enabled: ${APP_VOICE_INTERVIEW_WARMUP_OPENING_AUDIO_ENABLED:false}
 ```
 
-环境变量覆盖默认值：开发关预热、生产可打开——这是「配置外置」的实操例子（见 [06](06-voice-interview.md)）。
+环境变量覆盖默认值：开发关预热、生产可打开——这是「配置外置」的实操例子（见 [11](11-voice-realtime.md)）。
 
 ---
 
@@ -204,7 +204,7 @@ app:
 | `findFirstByResumeIdAndStatusInOrderByCreatedAtDesc` | 未完成会话（状态 IN） |
 | `findTop10BySkillIdOrderByCreatedAtDesc` | 限 10 条历史 |
 
-需要 JOIN FETCH / 投影时再用 `@Query`（JPQL）。列表性能与投影分析见 [08](08-interview-list-projection.md)（留档，非 L1 主任务）。`ddl-auto` 陷阱见 [07](07-jpa-ddl-auto.md)。
+需要 JOIN FETCH / 投影时再用 `@Query`（JPQL）。列表性能与投影分析、`ddl-auto` 陷阱都在 [05 JPA 实操](05-jpa-persistence.md)。
 
 ---
 
@@ -252,7 +252,7 @@ Spring Data 会按方法名生成 `exists … by sessionId` 查询。本轮用 `
 5. **配置**：`@ConfigurationProperties` + yml/环境变量；敏感信息不进仓库。
 
 → 通用概念与高频题：本地 `SpringBoot.md`（与本文双轨：概念复述 ↔ 仓库证据）  
-→ 环境 / ddl-auto / 列表投影：[01](01-env-setup.md) · [07](07-jpa-ddl-auto.md) · [08](08-interview-list-projection.md)
+→ 环境 / ddl-auto / 列表投影：[01](01-env-setup.md) · [05](05-jpa-persistence.md)
 
 ---
 
@@ -736,7 +736,7 @@ save      → Entity（写：保存后的对象，通常总有返回值）
 和你已见概念的关系：
 
 - `@Entity` / `@Column` → JPA 注解，由 **Hibernate** 解读并映射到表  
-- `ddl-auto`（见 [07](07-jpa-ddl-auto.md)）→ 多是 **Hibernate** 在启动时根据实体改 schema  
+- `ddl-auto`（见 [05](05-jpa-persistence.md)）→ 多是 **Hibernate** 在启动时根据实体改 schema  
 - `repository.save` / `findById` → Spring Data 调用，底层仍落到 Hibernate 发 SQL  
 
 一句话：**你写 Entity + Repository；Hibernate 在底下负责「对象 ↔ SQL ↔ 表」。** 日常可以说「我们用 JPA」，技术栈里实现通常就是 Hibernate。

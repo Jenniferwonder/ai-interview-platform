@@ -1,10 +1,11 @@
-# 本地环境搭建 — PostgreSQL + pgvector + Redis + RustFS
+# 01 · 项目前后端本地启动
 
-> 对应配置：`docker-compose.dev.yml`、`.env`、`application.yml`
+> 对应配置：`docker-compose.dev.yml`、`.env`、`application.yml`  
+> 本篇是整套笔记的起点：把基础设施、后端、前端依次跑起来，并记录我实际踩过的启动问题。跑通之后再看 [02 功能全景](02-project-features-overview.md) 与 [03 库表设计](03-db-schema-design.md)。
 
 ## 设计目标
 
-InterviewGuide 依赖 3 个基础设施：PostgreSQL（含 pgvector 向量扩展）、Redis、S3 兼容对象存储。本文通过 Docker Compose 一键启动，并记录实际操作过程。
+本项目依赖 3 个基础设施：PostgreSQL（含 pgvector 向量扩展）、Redis、S3 兼容对象存储。本文通过 Docker Compose 一键启动，并记录实际操作过程。
 
 > **实操环境**：Windows 11 / Docker Desktop 29.6.1 / Docker Compose v5.2.0
 
@@ -310,7 +311,7 @@ export SERVER_PORT=8082
 
 **结论**：不影响核心功能启动。预热线程被 InterruptedException 打断后 Spring Boot 继续初始化剩余 beans，最终 `Started App in 14.3 seconds`，10 个 Skill 全部加载，4 个 Redis Stream Consumer 正常启动。
 
-**后续优化**：开发环境默认关闭启动预热，避免每次 `bootRun` 都打云端 TTS。配置项 `app.voice-interview.warmup-opening-audio-enabled`（默认 `false`），详见 [06 实时语音面试](06-voice-interview.md)。
+**后续优化**：开发环境默认关闭启动预热，避免每次 `bootRun` 都打云端 TTS。配置项 `app.voice-interview.warmup-opening-audio-enabled`（默认 `false`），详见 [11 实时语音链路](11-voice-realtime.md)。
 
 #### 问题 3：6379 被老 Redis 占用（XAUTOCLAIM 报错）
 
@@ -331,7 +332,7 @@ netstat -ano | findstr :6379
 
 **根因**：本机另有老 Redis（常见为 Windows 服务 / Memurai / 其它安装）抢占了 `localhost:6379`。应用配置默认连 `redis://localhost:6379`，实际连到了旧实例；`XAUTOCLAIM` 需 Redis ≥ 6.2。`docker exec interview-redis ...` 只能证明**容器内**版本，不能证明 app 连的是它。
 
-**解决**：停掉本机老 Redis，让 Docker 容器独占 6379；或把容器映射改为 `6380:6379` 并设置 `REDIS_PORT=6380`。机制说明见 [05 Redis Stream](05-redis-stream-async.md)。
+**解决**：停掉本机老 Redis，让 Docker 容器独占 6379；或把容器映射改为 `6380:6379` 并设置 `REDIS_PORT=6380`。机制说明见 [06 Redis Stream](06-redis-stream-async.md)。
 
 #### 问题 4：`scoop reset temurin21-jdk` 后 `java -version` 仍是 8
 

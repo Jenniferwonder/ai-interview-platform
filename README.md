@@ -27,8 +27,7 @@
 - 🐛 **踩坑记录**：环境搭建中的实际问题诊断与修复过程
 
 > 完整的学习路线（本项目值得深挖的技术亮点 + 我要额外补齐的生产化能力）见 [LEARNING_PLAN.md](my-learning/LEARNING_PLAN.md)。  
-> 产品功能总览（各模块能力 + 流程图）见 [ai-interview-platform-features.md](my-learning/ai-interview-platform-features.md)。  
-> 各模块库表字段与逻辑见 [database-schema.md](my-learning/database-schema.md)。
+> 笔记按阅读顺序编号，入门三篇：[01 本地启动](my-learning/notes/01-env-setup.md) → [02 功能全景](my-learning/notes/02-project-features-overview.md) → [03 库表设计](my-learning/notes/03-db-schema-design.md)，完整索引见 [my-learning/README.md](my-learning/README.md)。
 
 ---
 
@@ -40,29 +39,29 @@
 
 | # | 主题 | 我要读懂/验证的核心 | 笔记 | 状态 |
 |---|------|----------------------|------|:--:|
-| L0 | 环境与工程基建 | Docker Compose 编排、端口排查、ddl-auto 陷阱 | [01](my-learning/notes/01-env-setup.md) · [07](my-learning/notes/07-jpa-ddl-auto.md) | ✅ |
-| L1 | Spring Boot 三层地基 | DI / 事务边界 / 派生查询 / 异常体系 | [10](my-learning/notes/10-spring-backend-foundations.md) | ✅ |
-| L2 | Spring AI 多 Provider | ChatClient 缓存、回退、Advisor、密钥加密 | [02](my-learning/notes/02-spring-ai-provider.md) | ⬜ |
-| L3 | 结构化输出与可靠性 | 重试循环、schema 校验、`BeanOutputConverter` | [02](my-learning/notes/02-spring-ai-provider.md) | ⬜ |
-| L4 | Prompt 工程与注入防护 | 模板化、sanitizer、system/user 分离 | `notes/11`（计划） | ⬜ |
-| L5 | RAG 检索增强全链路 | 向量化、Query Rewrite、TopK/阈值 | [04](my-learning/notes/04-rag-pipeline.md) | ⬜ |
-| L6 | Agent / 工具调用 | tool-calling 原理、技能编排 | `notes/12`（计划） | ⬜ |
-| L7 | Redis Stream 异步 | 消费者组、ACK、Pending 回收、死信 | [05](my-learning/notes/05-redis-stream-async.md) | ⬜ |
-| L8 | 限流与 AOP | Lua 原子限流、注解驱动、多维度 | `notes/13`（计划） | ⬜ |
-| L9 | 实时语音 WebSocket | VAD 断句、级联管线、首包延迟 | [06](my-learning/notes/06-voice-interview.md) | ⬜ |
-| L10 | 统一评估 + 文件/导出 | 共用评估、S3、Tika 解析、MapStruct | [03](my-learning/notes/03-unified-evaluation.md) | ⬜ |
+| L0 | 环境与工程基建 | Docker Compose 编排、端口排查、ddl-auto 陷阱 | [01](my-learning/notes/01-env-setup.md) · [05](my-learning/notes/05-jpa-persistence.md) | ✅ |
+| L1 | Spring Boot 三层地基 | DI / 事务边界 / 派生查询 / 异常体系 | [04](my-learning/notes/04-spring-boot-foundations.md) | ✅ |
+| L2 | Spring AI 多 Provider | ChatClient 缓存、回退、Advisor、密钥加密 | [08](my-learning/notes/08-llm-provider-integration.md) | ⬜ |
+| L3 | 结构化输出与可靠性 | 重试循环、schema 校验、`BeanOutputConverter` | [08](my-learning/notes/08-llm-provider-integration.md) | ⬜ |
+| L4 | Prompt 工程与注入防护 | 模板化、sanitizer、system/user 分离 | `notes/12`（计划） | ⬜ |
+| L5 | RAG 检索增强全链路 | 向量化、Query Rewrite、TopK/阈值 | [09](my-learning/notes/09-rag-pipeline.md) | ⬜ |
+| L6 | Agent / 工具调用 | tool-calling 原理、技能编排 | `notes/13`（计划） | ⬜ |
+| L7 | Redis Stream 异步 | 消费者组、ACK、Pending 回收、死信 | [06](my-learning/notes/06-redis-stream-async.md) | ⬜ |
+| L8 | 限流与 AOP | Lua 原子限流、注解驱动、多维度 | `notes/14`（计划） | ⬜ |
+| L9 | 实时语音 WebSocket | VAD 断句、级联管线、首包延迟 | [11](my-learning/notes/11-voice-realtime.md) | ⬜ |
+| L10 | 统一评估 + 文件/导出 | 共用评估、S3、Tika 解析、MapStruct | [10](my-learning/notes/10-evaluation-engine.md) · [07](my-learning/notes/07-file-storage-parsing.md) | ⬜ |
 
 ### G 系列 · 补齐项目没覆盖的生产化能力
 
 | # | 主题 | 项目现状 → 我要加什么 | 笔记 | 状态 |
 |---|------|------------------------|------|:--:|
-| G1 | 认证与鉴权 | 接口裸奔 → Spring Security + JWT + `@PreAuthorize` | `notes/20`（计划） | ⬜ |
-| G2 | 数据库迁移 | 靠 ddl-auto → Flyway 版本化迁移 + `validate` | `notes/21`（计划） | ⬜ |
-| G3 | 分布式追踪 | 只有指标 → micrometer-tracing + traceId 串链路 | `notes/22`（计划） | ⬜ |
-| G4 | 测试体系 | 多 @Disabled → Testcontainers 起真 Redis/PG 跑全链路 | [05 增补](my-learning/notes/05-redis-stream-async.md) | ⬜ |
-| G5 | AI 质量评估 | 有评分无 eval → 建评测集，量化 faithfulness/命中率 | `notes/23`（计划） | ⬜ |
-| G6 | 容器化与 CI | 有 compose 无流水线 → 多阶段 Dockerfile + GitHub Actions | `notes/24`（计划） | ⬜ |
-| G7 | SSE 流式可靠性 | 断网丢内容 → 指数退避重试 + 内容不丢 | [04 增补](my-learning/notes/04-rag-pipeline.md) | ⬜ |
+| G1 | 认证与鉴权 | 接口裸奔 → Spring Security + JWT + `@PreAuthorize` | `notes/15`（计划） | ⬜ |
+| G2 | 数据库迁移 | 靠 ddl-auto → Flyway 版本化迁移 + `validate` | `notes/16`（计划） | ⬜ |
+| G3 | 分布式追踪 | 只有指标 → micrometer-tracing + traceId 串链路 | `notes/17`（计划） | ⬜ |
+| G4 | 测试体系 | 多 @Disabled → Testcontainers 起真 Redis/PG 跑全链路 | [06 增补](my-learning/notes/06-redis-stream-async.md) | ⬜ |
+| G5 | AI 质量评估 | 有评分无 eval → 建评测集，量化 faithfulness/命中率 | `notes/18`（计划） | ⬜ |
+| G6 | 容器化与 CI | 有 compose 无流水线 → 多阶段 Dockerfile + GitHub Actions | `notes/19`（计划） | ⬜ |
+| G7 | SSE 流式可靠性 | 断网丢内容 → 指数退避重试 + 内容不丢 | [09 增补](my-learning/notes/09-rag-pipeline.md) | ⬜ |
 
 ---
 

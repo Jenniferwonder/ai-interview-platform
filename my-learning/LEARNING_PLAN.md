@@ -36,19 +36,19 @@
 
 | # | 主题 | 读什么（核心源码） | 要建立的概念 | 我的小验证 | 笔记 |
 |---|------|-------------------|-------------|-----------|:--:|
-| L0 | 环境与工程基建 ✅ | `docker-compose.dev.yml`、启动日志 | Compose 编排、端口/依赖排查、ddl-auto 陷阱 | 已完成 | `01`·`07` |
-| L1 | Spring Boot 三层地基 | `interview` 模块 Controller/Service/Repository；`common/result`、`common/exception`、`common/config/*Properties` | DI 与构造器注入、`@Transactional` 边界、派生查询、`Result<T>`、全局异常体系 | 已完成：笔记 `10` + `existsBySessionId` 派生查询 | `10` ✅ |
-| L2 | Spring AI 多 Provider | `common/ai/LlmProviderRegistry`、`LlmProviderProperties`、`ApiPathResolver`、`modules/llmprovider/*` | `ChatClient`/`ChatModel`、OpenAI 兼容协议、Advisor、多 Provider 抽象、密钥加密 | 加一个 OpenAI 兼容 Provider，验证运行时切换/回退 | `02` |
-| L3 | 结构化输出与可靠性 | `common/ai/StructuredOutputInvoker`、`StructuredOutputProperties`、`ResumeGradingService` | LLM JSON 不可靠、`BeanOutputConverter`、重试/降级、判别边界 | 制造坏 JSON，观察重试与指标变化 | `02` |
-| L4 | Prompt 工程与注入防护 | `common/ai/PromptSanitizer`、`PromptSecurityConstants`、`resources/prompts/*.st` | 模板化管理、注入攻击与防护、system/user 分离 | 写恶意输入用例验证 sanitizer | `11` |
-| L5 | RAG 检索增强全链路 | `knowledgebase/service/KnowledgeBaseVectorService`、`KnowledgeBaseQueryService`、`listener/VectorizeStream*` | embedding 维度/COSINE、HNSW、分块、Query Rewrite、TopK/阈值、召回 vs 精度 | 调 chunk/TopK，人工对比检索差异（为 G5 打基础） | `04` |
-| L6 | Agent / 工具调用 | `common/ai/AgentUtilsConfiguration`、Registry 的 tools/voice 变体、`resources/skills/` | tool-calling 原理、工具注册与编排、Agent vs 纯 RAG | 画一次「LLM 决定调用工具 → 执行 → 回填」时序 | `12` |
-| L7 | Redis Stream 异步 | `common/async/AbstractStreamProducer`/`Consumer`、`infrastructure/redis/RedisService`、各模块 `listener/` | 消费者组、ACK、Pending 回收、死信、幂等、为何不用 `@Async` | 给一个新任务类型走一遍模板 | `05` |
-| L8 | 限流与横切（AOP） | `common/aspect/RateLimitAspect`（Lua + Redisson）、`common/annotation/RateLimit` | AOP 切面、注解驱动、Lua 原子限流、多维度（GLOBAL/IP/SESSION） | 给接口加 `@RateLimit` 压测触发 | `13` |
-| L9 | 实时语音 WebSocket | `voiceinterview/handler/VoiceInterviewWebSocketHandler`、`QwenAsrService`/`QwenTtsService`/`DashscopeLlmService`、`WebSocketConfig` | WebSocket/SSE/WebRTC、ASR→LLM→TTS 级联、边生成边合成、首包延迟 | 标注一轮对话各段 Micrometer 指标 | `06` |
-| L10 | 统一评估 + 文件/导出 | `common/evaluation/UnifiedEvaluationService`、`infrastructure/file/*`、`export/`、`mapper/` | 文字/语音共用评估、S3 兼容存储、Tika 解析、MapStruct | 读懂评估装配与文件解析链路 | `03` |
+| L0 | 环境与工程基建 ✅ | `docker-compose.dev.yml`、启动日志 | Compose 编排、端口/依赖排查、ddl-auto 陷阱 | 已完成 | `01`·`05` |
+| L1 | Spring Boot 三层地基 | `interview` 模块 Controller/Service/Repository；`common/result`、`common/exception`、`common/config/*Properties` | DI 与构造器注入、`@Transactional` 边界、派生查询、`Result<T>`、全局异常体系 | 已完成：笔记 `04` + `existsBySessionId` 派生查询 | `04` ✅ |
+| L2 | Spring AI 多 Provider | `common/ai/LlmProviderRegistry`、`LlmProviderProperties`、`ApiPathResolver`、`modules/llmprovider/*` | `ChatClient`/`ChatModel`、OpenAI 兼容协议、Advisor、多 Provider 抽象、密钥加密 | 加一个 OpenAI 兼容 Provider，验证运行时切换/回退 | `08` |
+| L3 | 结构化输出与可靠性 | `common/ai/StructuredOutputInvoker`、`StructuredOutputProperties`、`ResumeGradingService` | LLM JSON 不可靠、`BeanOutputConverter`、重试/降级、判别边界 | 制造坏 JSON，观察重试与指标变化 | `08` |
+| L4 | Prompt 工程与注入防护 | `common/ai/PromptSanitizer`、`PromptSecurityConstants`、`resources/prompts/*.st` | 模板化管理、注入攻击与防护、system/user 分离 | 写恶意输入用例验证 sanitizer | `12` |
+| L5 | RAG 检索增强全链路 | `knowledgebase/service/KnowledgeBaseVectorService`、`KnowledgeBaseQueryService`、`listener/VectorizeStream*` | embedding 维度/COSINE、HNSW、分块、Query Rewrite、TopK/阈值、召回 vs 精度 | 调 chunk/TopK，人工对比检索差异（为 G5 打基础） | `09` |
+| L6 | Agent / 工具调用 | `common/ai/AgentUtilsConfiguration`、Registry 的 tools/voice 变体、`resources/skills/` | tool-calling 原理、工具注册与编排、Agent vs 纯 RAG | 画一次「LLM 决定调用工具 → 执行 → 回填」时序 | `13` |
+| L7 | Redis Stream 异步 | `common/async/AbstractStreamProducer`/`Consumer`、`infrastructure/redis/RedisService`、各模块 `listener/` | 消费者组、ACK、Pending 回收、死信、幂等、为何不用 `@Async` | 给一个新任务类型走一遍模板 | `06` |
+| L8 | 限流与横切（AOP） | `common/aspect/RateLimitAspect`（Lua + Redisson）、`common/annotation/RateLimit` | AOP 切面、注解驱动、Lua 原子限流、多维度（GLOBAL/IP/SESSION） | 给接口加 `@RateLimit` 压测触发 | `14` |
+| L9 | 实时语音 WebSocket | `voiceinterview/handler/VoiceInterviewWebSocketHandler`、`QwenAsrService`/`QwenTtsService`/`DashscopeLlmService`、`WebSocketConfig` | WebSocket/SSE/WebRTC、ASR→LLM→TTS 级联、边生成边合成、首包延迟 | 标注一轮对话各段 Micrometer 指标 | `11` |
+| L10 | 统一评估 + 文件/导出 | `common/evaluation/UnifiedEvaluationService`、`infrastructure/file/*`、`export/`、`mapper/` | 文字/语音共用评估、S3 兼容存储、Tika 解析、MapStruct | 读懂评估装配与文件解析链路 | `10`·`07` |
 
-> 备注：`notes/08-interview-list-projection.md` 记录了一次列表查询的 JPQL 投影分析（`findAll()` 整行加载 → 只查 DTO 列），属常规查询优化，作为顺带的小知识留档，不单列为学习任务。
+> 备注：列表查询的 JPQL 投影分析（`findAll()` 整行加载 → 只查 DTO 列）属常规查询优化，并入 `notes/05-jpa-persistence.md` 留档，不单列为学习任务。
 
 ---
 
@@ -58,13 +58,13 @@
 
 | # | 主题 | 现状 → 我要加什么 | 我的验收 | 笔记 |
 |---|------|------------------|----------|:--:|
-| G1 | 认证与鉴权 | 接口裸奔 → `spring-boot-starter-security` + JWT 登录 + `SecurityFilterChain` + `@PreAuthorize`，按用户隔离 | 未登录 401、越权 403、`/api/**` 需 token | `20` |
-| G2 | 数据库迁移 | 靠 ddl-auto（`notes/07` 踩过丢数据）→ Flyway `V1__init.sql`，`ddl-auto` 改 `validate` | 重启不依赖自动建表、可版本化回滚 | `21` |
-| G3 | 分布式追踪与日志 | 只有指标 → `micrometer-tracing` + OTel/Zipkin，日志加 MDC，覆盖一次 RAG/简历链路 | 一次请求能看到跨 Service/Stream 的 span | `22` |
-| G4 | 测试体系 | Redis 测试多 `@Disabled` → Testcontainers 起真 Redis/PG，Mock S3/LLM 跑全链路 | `./gradlew :app:test` 默认跑通链路（PENDING→COMPLETED/FAILED） | `05` 增补 |
-| G5 | AI 质量评估 | 有评分无 eval → 建 20~30 条评测集，Java 内 LLM-as-judge 度量 faithfulness/命中率 | 「参数改动 → 指标变化」对比表 + 结论 | `23` |
-| G6 | 容器化与 CI | 有 compose 无流水线 → 多阶段 `Dockerfile` + 全栈 compose + GitHub Actions | 一条命令起全栈、PR 触发 CI（build + test） | `24` |
-| G7 | SSE 流式可靠性 | 断网丢已渲染内容 → `frontend/src/api/stream.ts` 指数退避重试 + 内容保留/按 messageId 补齐 | 断网可恢复且不丢已渲染内容 | `04` 增补 |
+| G1 | 认证与鉴权 | 接口裸奔 → `spring-boot-starter-security` + JWT 登录 + `SecurityFilterChain` + `@PreAuthorize`，按用户隔离 | 未登录 401、越权 403、`/api/**` 需 token | `15` |
+| G2 | 数据库迁移 | 靠 ddl-auto（`notes/05` 踩过丢数据）→ Flyway `V1__init.sql`，`ddl-auto` 改 `validate` | 重启不依赖自动建表、可版本化回滚 | `16` |
+| G3 | 分布式追踪与日志 | 只有指标 → `micrometer-tracing` + OTel/Zipkin，日志加 MDC，覆盖一次 RAG/简历链路 | 一次请求能看到跨 Service/Stream 的 span | `17` |
+| G4 | 测试体系 | Redis 测试多 `@Disabled` → Testcontainers 起真 Redis/PG，Mock S3/LLM 跑全链路 | `./gradlew :app:test` 默认跑通链路（PENDING→COMPLETED/FAILED） | `06` 增补 |
+| G5 | AI 质量评估 | 有评分无 eval → 建 20~30 条评测集，Java 内 LLM-as-judge 度量 faithfulness/命中率 | 「参数改动 → 指标变化」对比表 + 结论 | `18` |
+| G6 | 容器化与 CI | 有 compose 无流水线 → 多阶段 `Dockerfile` + 全栈 compose + GitHub Actions | 一条命令起全栈、PR 触发 CI（build + test） | `19` |
+| G7 | SSE 流式可靠性 | 断网丢已渲染内容 → `frontend/src/api/stream.ts` 指数退避重试 + 内容保留/按 messageId 补齐 | 断网可恢复且不丢已渲染内容 | `09` 增补 |
 
 
 
@@ -83,10 +83,10 @@ flowchart TD
 
 | 阶段 | 目标 | 学习项 | 主要产出 |
 |------|------|--------|----------|
-| 1 后端地基 | 能读懂/改任一模块 | L1、L8、L10 | notes 10、13 + 03 增补 |
-| 2 AI 核心 | 掌握 LLM/RAG/Agent | L2、L3、L4、L5、L6 | notes 02、04、11、12 增补 |
-| 3 工程化 | 异步/实时/可观测/可测 | L7、L9、G3、G4 | notes 05、06、22 + 集成测试 |
-| 4 生产化 | 认证/迁移/评估/部署 | G1、G2、G5、G6、G7 | notes 20~24 |
+| 1 后端地基 | 能读懂/改任一模块 | L1、L8、L10 | notes 04、07、10、14 |
+| 2 AI 核心 | 掌握 LLM/RAG/Agent | L2、L3、L4、L5、L6 | notes 08、09、12、13 |
+| 3 工程化 | 异步/实时/可观测/可测 | L7、L9、G3、G4 | notes 06、11、17 + 集成测试 |
+| 4 生产化 | 认证/迁移/评估/部署 | G1、G2、G5、G6、G7 | notes 15、16、18、19 |
 
 **我的执行原则**：
 1. 每个学习项先「读代码 + 画一张图」再动手，不让自己停在「看过但没懂」
@@ -98,40 +98,41 @@ flowchart TD
 
 ## 五、笔记索引（按 L / G 分类）
 
-**编号约定**
+**编号约定**（2026-07-31 重排）
 
-- `notes/01–08`：L/G 拆分前已沉淀的基础笔记，**保留原文件名**以稳定链接（已公开、被多处引用，不重命名）。
-- `notes/10–19`：**L 系列**（深挖项目已有亮点）新增笔记段。
-- `notes/20–29`：**G 系列**（补齐工程化能力）新增笔记段。
-- 一篇笔记可服务多个 L/G 项（如 `02` 覆盖 L2+L3、`04` 覆盖 L5+G7、`05` 覆盖 L7+G4）。
+笔记按**阅读顺序**编号，而不是按 L/G 分段：
+
+- `01–03`：入门三件套——本地启动、功能全景、库表设计。
+- `04` 起：按功能模块拆解技术要点与踩坑，编号即推荐阅读顺序。
+- 计划中的笔记沿用同一序列继续排（`12` 起），不再另开号段。
+- 一篇笔记可服务多个 L/G 项（如 `08` 覆盖 L2+L3、`09` 覆盖 L5+G7、`06` 覆盖 L7+G4）。
 
 **L 系列 · 深挖项目已有亮点**
 
 | 项 | 笔记 | 状态 |
 |----|------|:--:|
-| L0 | `01-env-setup` · `07-jpa-ddl-auto` | ✅ 完成 |
-| L1 | `10-spring-backend-foundations` | ✅ 完成 |
-| L2 · L3 | `02-spring-ai-provider` | 🟡 已有，待增补 |
-| L4 | `11-prompt-engineering-security` | ⬜ 待新增 |
-| L5 | `04-rag-pipeline` | 🟡 已有，待增补 |
-| L6 | `12-agent-tool-calling` | ⬜ 待新增 |
-| L7 | `05-redis-stream-async` | 🟡 已有，待增补 |
-| L8 | `13-rate-limit-aop` | ⬜ 待新增 |
-| L9 | `06-voice-interview` | 🟡 已有，待增补 |
-| L10 | `03-unified-evaluation` | 🟡 已有，待增补 |
-| —（留档） | `08-interview-list-projection` | ✅ 留档，非任务 |
+| L0 | `01-env-setup` · `05-jpa-persistence` | ✅ 完成 |
+| L1 | `04-spring-boot-foundations` | ✅ 完成 |
+| L2 · L3 | `08-llm-provider-integration` | 🟡 已有，待增补 |
+| L4 | `12-prompt-engineering-security` | ⬜ 待新增 |
+| L5 | `09-rag-pipeline` | 🟡 已有，待增补 |
+| L6 | `13-agent-tool-calling` | ⬜ 待新增 |
+| L7 | `06-redis-stream-async` | 🟡 已有，待增补 |
+| L8 | `14-rate-limit-aop` | ⬜ 待新增 |
+| L9 | `11-voice-realtime` | 🟡 已有，待增补 |
+| L10 | `10-evaluation-engine` · `07-file-storage-parsing` | 🟡 已有，待增补 |
 
 **G 系列 · 补齐工程化能力**
 
 | 项 | 笔记 | 状态 |
 |----|------|:--:|
-| G1 | `20-spring-security-jwt` | ⬜ 待新增 |
-| G2 | `21-flyway-migration` | ⬜ 待新增 |
-| G3 | `22-tracing-observability` | ⬜ 待新增 |
-| G4 | `05-redis-stream-async`（增补集成测试章节） | ⬜ 待增补 |
-| G5 | `23-rag-evaluation` | ⬜ 待新增 |
-| G6 | `24-docker-cicd` | ⬜ 待新增 |
-| G7 | `04-rag-pipeline`（增补 SSE 可靠性章节） | ⬜ 待增补 |
+| G1 | `15-spring-security-jwt` | ⬜ 待新增 |
+| G2 | `16-flyway-migration` | ⬜ 待新增 |
+| G3 | `17-tracing-observability` | ⬜ 待新增 |
+| G4 | `06-redis-stream-async`（增补集成测试章节） | ⬜ 待增补 |
+| G5 | `18-rag-evaluation` | ⬜ 待新增 |
+| G6 | `19-docker-cicd` | ⬜ 待新增 |
+| G7 | `09-rag-pipeline`（增补 SSE 可靠性章节） | ⬜ 待增补 |
 
 代码改动按 `code-changes/` 目录组织，命名沿用同一约定；G 系列每完成一项，新增对应目录与 diff。
 

@@ -1,10 +1,11 @@
-# 统一面试评估引擎
+# 10 · 统一评估引擎（文字 / 语音共用）
 
-> 对应源码：`common/evaluation/UnifiedEvaluationService.java`、`EvaluationReport.java`、`QaRecord.java`、`prompts/interview-evaluation-*.st`
+> 对应源码：`common/evaluation/UnifiedEvaluationService.java`、`EvaluationReport.java`、`QaRecord.java`、`prompts/interview-evaluation-*.st`  
+> 触发方式（异步入队）见 [06 Redis Stream](06-redis-stream-async.md)；结果落库字段见 [03 库表设计](03-db-schema-design.md)。
 
 ## 设计目标
 
-文字面试和语音面试共用同一套评估引擎，评估结果可对比。
+文字问答和语音问答共用同一套评估引擎，评估结果可对比。
 
 ## 评估流程
 
