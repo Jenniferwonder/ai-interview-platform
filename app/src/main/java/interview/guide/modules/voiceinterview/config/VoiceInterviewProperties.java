@@ -52,11 +52,9 @@ public class VoiceInterviewProperties {
      */
     private int ttsTimeoutSeconds = 8;
     /**
-     * 是否在应用启动时预热开场白 TTS 音频缓存。
-     * 开启后启动即调用云端 TTS 合成，消耗 API 额度并延长后台预热耗时；
-     * 开发环境默认关闭，生产可开启以降低首句语音延迟。
+     * 是否在应用启动时预热开场白音频缓存。默认关闭，避免启动时产生云端 TTS 调用。
      */
-    private boolean warmupOpeningAudioEnabled = false;
+    private boolean openingAudioWarmupEnabled = false;
 
     @Data
     public static class PhaseConfig {

@@ -91,6 +91,8 @@ public class InterviewSessionService {
             sessionId,
             request.resumeText() != null ? request.resumeText() : "",
             request.resumeId(),
+            null,
+            null,
             questions,
             0,
             SessionStatus.CREATED
@@ -110,7 +112,38 @@ public class InterviewSessionService {
             questions.size(),
             0,
             questions,
-            SessionStatus.CREATED
+            SessionStatus.CREATED,
+            null,
+            null
+        );
+    }
+
+    public InterviewSessionDTO createSessionFromQuestions(List<InterviewQuestionDTO> questions,
+                                                          String llmProvider,
+                                                          String skillId,
+                                                          String difficulty,
+                                                          Long knowledgeBaseId,
+                                                          String interviewCategory) {
+        if (questions == null || questions.isEmpty()) {
+            throw new BusinessException(ErrorCode.INTERVIEW_QUESTION_NOT_FOUND, "面试题目不能为空");
+        }
+
+        String sessionId = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
+        persistenceService.saveSession(
+            sessionId, null, questions.size(), questions, llmProvider, skillId, difficulty,
+            "KNOWLEDGE_BASE", knowledgeBaseId, interviewCategory);
+        sessionCache.saveSession(sessionId, "", null, knowledgeBaseId, interviewCategory,
+            questions, 0, SessionStatus.CREATED);
+
+        return new InterviewSessionDTO(
+            sessionId,
+            "",
+            questions.size(),
+            0,
+            questions,
+            SessionStatus.CREATED,
+            knowledgeBaseId,
+            interviewCategory
         );
     }
 
@@ -215,6 +248,8 @@ public class InterviewSessionService {
                 entity.getSessionId(),
                 entity.getResume() != null ? entity.getResume().getResumeText() : "",
                 entity.getResume() != null ? entity.getResume().getId() : null,
+                entity.getKnowledgeBaseId(),
+                entity.getInterviewCategory(),
                 questions,
                 entity.getCurrentQuestionIndex(),
                 status
@@ -507,7 +542,9 @@ public class InterviewSessionService {
             questions.size(),
             session.getCurrentIndex(),
             questions,
-            session.getStatus()
+            session.getStatus(),
+            session.getKnowledgeBaseId(),
+            session.getInterviewCategory()
         );
     }
 }

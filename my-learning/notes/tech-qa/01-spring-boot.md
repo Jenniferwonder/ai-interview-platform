@@ -98,7 +98,7 @@ throw new BusinessException(ErrorCode.INTERVIEW_QUESTION_NOT_FOUND, "无效的�
 
 **答：** 一组相关配置用 `@ConfigurationProperties` 绑到类型安全对象；`@Value` 适合极少数一次性单值，散落多处后很难知道「这个功能到底受哪些配置影响」。
 
-**本仓库：** `StorageConfigProperties`、`VoiceInterviewProperties`、`LlmProviderProperties`、`StructuredOutputProperties`、`AppConfigProperties`。规则是「Service 里不出现 `@Value`」。例：`app.voice-interview.warmup-opening-audio-enabled` 用环境变量覆盖，开发关预热、生产可开（见 [modules/03](../modules/03-voiceinterview.md)）。
+**本仓库：** `StorageConfigProperties`、`VoiceInterviewProperties`、`LlmProviderProperties`、`StructuredOutputProperties`、`AppConfigProperties`。规则是「Service 里不出现 `@Value`」。例：`app.voice-interview.opening-audio-warmup-enabled` 用环境变量覆盖，开发关预热、生产可开（见 [modules/03](../modules/03-voiceinterview.md)）。
 
 ---
 
@@ -106,7 +106,7 @@ throw new BusinessException(ErrorCode.INTERVIEW_QUESTION_NOT_FOUND, "无效的�
 
 **答：** Bean 初始化后做一次性准备。风险是拖慢启动、外部依赖不可用时启动即报错、和自动配置顺序耦合。
 
-**本仓库：** `FileStorageService.init()` 检查/创建 S3 桶；`InterviewSkillService.loadPresetSkills()` 扫技能包；语音开场白 TTS 预热（默认关：`warmup-opening-audio-enabled`）。
+**本仓库：** `FileStorageService.init()` 检查/创建 S3 桶；`InterviewSkillService.loadPresetSkills()` 扫技能包；语音开场白 TTS 预热（默认关：`opening-audio-warmup-enabled`）。
 
 ---
 

@@ -311,7 +311,7 @@ export SERVER_PORT=8082
 
 **结论**：不影响核心功能启动。预热线程被 InterruptedException 打断后 Spring Boot 继续初始化剩余 beans，最终 `Started App in 14.3 seconds`，10 个 Skill 全部加载，4 个 Redis Stream Consumer 正常启动。
 
-**后续优化**：开发环境默认关闭启动预热，避免每次 `bootRun` 都打云端 TTS。配置项 `app.voice-interview.warmup-opening-audio-enabled`（默认 `false`），详见 [modules/03 实时语音问答](modules/03-voiceinterview.md)。
+**后续优化**：开发环境默认关闭启动预热，避免每次 `bootRun` 都打云端 TTS。配置项 `app.voice-interview.opening-audio-warmup-enabled`（默认 `false`），详见 [modules/03 实时语音问答](modules/03-voiceinterview.md)。
 
 #### 问题 3：6379 被老 Redis 占用（XAUTOCLAIM 报错）
 

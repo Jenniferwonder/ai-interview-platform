@@ -107,9 +107,8 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
 
     @PostConstruct
     void warmupOpeningAudioCache() {
-        if (!voiceInterviewProperties.isWarmupOpeningAudioEnabled()) {
-            log.info("Opening audio cache warmup disabled; skipping startup TTS synthesis "
-                + "(set app.voice-interview.warmup-opening-audio-enabled=true to enable)");
+        if (!voiceInterviewProperties.isOpeningAudioWarmupEnabled()) {
+            log.info("Opening audio cache warmup is disabled");
             return;
         }
         voicePipelineExecutor.execute(() -> {
@@ -1149,7 +1148,7 @@ public class VoiceInterviewWebSocketHandler extends TextWebSocketHandler impleme
         });
     }
 
-    @Scheduled(fixedRate = 300_000)
+    @Scheduled(fixedRate = 60_000)
     public void cleanupStaleSessions() {
         try {
             int cleaned = interviewService.cleanupStaleSessions();

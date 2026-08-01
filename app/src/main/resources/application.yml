@@ -41,17 +41,23 @@ spring:
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:interview_guide}
     username: ${POSTGRES_USER:postgres}
-    # 与根目录 docker-compose.yml 中 postgres 服务默认一致（本地只起依赖容器 + bootRun 时无需改）
-    password: ${POSTGRES_PASSWORD:password}
+    # 与 docker-compose.dev.yml 中 postgres 服务默认一致（本地只起依赖容器 + bootRun 时无需改）
+    password: ${POSTGRES_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update #首次启动用 create，表创建成功后，改回 update
+      ddl-auto: validate
     show-sql: false
     properties:
       hibernate:
         format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    baseline-version: 1
 
   servlet:
     multipart:
@@ -91,7 +97,7 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 1024  # text-embedding-v3实际生成的向量维度
-        initialize-schema: true # 开发环境设置为 true，方便快速启动。生产环境设置为 false，手动管理数据库 schema，避免意外变更。
+        initialize-schema: false # schema 统一由 Flyway 管理
         remove-existing-vector-store-table: false  # 保留现有表和数据
 
 # Application custom configuration
@@ -277,12 +283,12 @@ app:
     ai-question-max-chars: ${APP_VOICE_AI_QUESTION_MAX_CHARS:120}
     # 是否按句子边合成边推送语音；开启后首段语音不用等待完整回复生成结束
     chunked-audio-enabled: ${APP_VOICE_CHUNKED_AUDIO_ENABLED:true}
-    # 是否在启动时预热开场白 TTS 音频缓存（会调用云端 TTS 消耗额度）；开发默认关闭，生产可置 true 降低首句语音延迟
-    warmup-opening-audio-enabled: ${APP_VOICE_INTERVIEW_WARMUP_OPENING_AUDIO_ENABLED:false}
     # 单句 TTS 合成超时，避免某一句卡住整轮播放
     tts-timeout-seconds: ${APP_VOICE_TTS_TIMEOUT_SECONDS:8}
     # 单会话并发 TTS 上限，控制首段语音速度和服务连接压力
     max-concurrent-tts-per-session: ${APP_VOICE_MAX_CONCURRENT_TTS_PER_SESSION:3}
+    # 是否在应用启动时为开场白预热音频缓存；默认关闭，避免启动时产生云端 TTS 调用
+    opening-audio-warmup-enabled: ${APP_VOICE_OPENING_AUDIO_WARMUP_ENABLED:false}
 
     # Rate limiting
     rate-limit:
