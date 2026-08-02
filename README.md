@@ -28,13 +28,40 @@
 
 > 完整学习路线（L 深挖已有亮点 + G 补齐生产化缺口）见 [LEARNING_PLAN.md](my-learning/LEARNING_PLAN.md)。笔记索引见 [my-learning/README.md](my-learning/README.md)。
 
-**支撑笔记怎么读**（`my-learning/notes/`）：
+**支撑笔记怎么读**（`my-learning/notes/`；总索引见 [my-learning/README.md](my-learning/README.md)）：
 
 | 层 | 目录 | 干什么 |
 |----|------|--------|
 | 项目全貌 | `notes/01–03` | 本地启动 → 功能全景 → 库表设计，先把项目跑起来、看懂全貌 |
-| 方向一 | [`notes/modules/`](my-learning/notes/modules/README.md) | 按业务模块（简历 / 文字问答 / 语音 / RAG / 日程 / 模型配置）讲清一条链路用到了哪些技术 |
-| 方向二 | [`notes/tech-qa/`](my-learning/notes/tech-qa/README.md) | 按核心技术（Spring Boot / JPA / Redis / LLM / Prompt / RAG / Tool-Calling / 流式与异步 / 存储 / 限流与可观测 / AI 质量）整理高频问答：问题 → 简答 → 本仓库落点 |
+| 方向一 | [`notes/modules/`](my-learning/notes/modules/README.md) | 按业务模块讲清一条链路用到了哪些技术 |
+| 方向二 | [`notes/tech-qa/`](my-learning/notes/tech-qa/README.md) | 按核心技术整理高频问答：问题 → 简答 → 本仓库落点 |
+
+**方向一 · 业务模块笔记索引**（[modules/README](my-learning/notes/modules/README.md)）
+
+| 笔记 | 模块 |
+|------|------|
+| [01 简历分析](my-learning/notes/modules/01-resume.md) | `resume` |
+| [02 文字模拟问答](my-learning/notes/modules/02-interview.md) | `interview` |
+| [03 实时语音问答](my-learning/notes/modules/03-voiceinterview.md) | `voiceinterview` |
+| [04 知识库与 RAG](my-learning/notes/modules/04-knowledgebase.md) | `knowledgebase` |
+| [05 日程管理](my-learning/notes/modules/05-interviewschedule.md) | `interviewschedule` |
+| [06 模型与语音配置](my-learning/notes/modules/06-llmprovider.md) | `llmprovider` |
+
+**方向二 · 核心技术问答索引**（[tech-qa/README](my-learning/notes/tech-qa/README.md)）
+
+| 笔记 | 主题 |
+|------|------|
+| [01 Spring Boot](my-learning/notes/tech-qa/01-spring-boot.md) | IoC/DI、三层、统一响应/异常、事务边界、AOP |
+| [02 JPA 与事务](my-learning/notes/tech-qa/02-jpa-transaction.md) | `ddl-auto`、派生查询、投影、N+1 |
+| [03 Redis](my-learning/notes/tech-qa/03-redis.md) | Redisson、Stream、ACK/重试/幂等 |
+| [04 LLM 接入](my-learning/notes/tech-qa/04-llm-integration.md) | `ChatClient`、多 Provider、流式、密钥 |
+| [05 Prompt 工程](my-learning/notes/tech-qa/05-prompt-engineering.md) | 模板化、注入防护 |
+| [06 RAG](my-learning/notes/tech-qa/06-rag.md) | 分块、Embedding、pgvector、TopK |
+| [07 Tool-Calling / Agent](my-learning/notes/tech-qa/07-tool-calling-agent.md) | SkillsTool、ReAct、护栏 |
+| [08 AI 应用工作流](my-learning/notes/tech-qa/08-ai-app-dev-workflow.md) | SSE / WebSocket / 异步、断流 |
+| [09 存储与文档解析](my-learning/notes/tech-qa/09-file-storage-parsing.md) | S3、去重、Tika、PDF |
+| [10 可观测与限流](my-learning/notes/tech-qa/10-observability-rate-limit.md) | Lua 滑动窗口、Micrometer |
+| [11 AI 质量与评估](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) | 结构化输出、降级、eval 缺口 |
 
 ---
 
@@ -46,19 +73,19 @@
 
 > 状态：✅ 完成 · 📝 笔记已成篇、动手项待做 · ⬜ 未开始
 
-| # | 主题 | 我要读懂/验证的核心 | 笔记 | 状态 |
-|---|------|----------------------|------|:--:|
-| L0 | 环境与工程基建 | Docker Compose 编排、端口排查、ddl-auto 陷阱 | [01](my-learning/notes/01-env-setup.md) · [tech-qa/02](my-learning/notes/tech-qa/02-jpa-transaction.md) | ✅ |
-| L1 | Spring Boot 三层地基 | DI / 事务边界 / 派生查询 / 异常体系 | [tech-qa/01](my-learning/notes/tech-qa/01-spring-boot.md) | ✅ |
-| L2 | Spring AI 多 Provider | ChatClient 缓存、回退、Advisor、密钥加密 | [modules/06](my-learning/notes/modules/06-llmprovider.md) · [tech-qa/04](my-learning/notes/tech-qa/04-llm-integration.md) | 📝 |
-| L3 | 结构化输出与可靠性 | 重试循环、schema 校验、`BeanOutputConverter` | [tech-qa/11](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) | 📝 |
-| L4 | Prompt 工程与注入防护 | 模板化、sanitizer、system/user 分离 | [tech-qa/05](my-learning/notes/tech-qa/05-prompt-engineering.md) | 📝 |
-| L5 | RAG 检索增强全链路 | 向量化、Query Rewrite、TopK/阈值 | [modules/04](my-learning/notes/modules/04-knowledgebase.md) · [tech-qa/06](my-learning/notes/tech-qa/06-rag.md) | 📝 |
-| L6 | Agent / 工具调用 | tool-calling 原理、技能编排 | [tech-qa/07](my-learning/notes/tech-qa/07-tool-calling-agent.md) | 📝 |
-| L7 | Redis Stream 异步 | 消费者组、ACK、Pending 回收、死信 | [tech-qa/03](my-learning/notes/tech-qa/03-redis.md) | 📝 |
-| L8 | 限流与 AOP | Lua 滑动窗口、注解驱动、多维度 | [tech-qa/10](my-learning/notes/tech-qa/10-observability-rate-limit.md) | 📝 |
-| L9 | 实时语音 WebSocket | VAD 断句、级联管线、首包延迟 | [modules/03](my-learning/notes/modules/03-voiceinterview.md) · [tech-qa/08](my-learning/notes/tech-qa/08-ai-app-dev-workflow.md) | 📝 |
-| L10 | 统一评估 + 文件/导出 | 共用评估、S3、Tika 解析、iText | [tech-qa/11](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) · [tech-qa/09](my-learning/notes/tech-qa/09-file-storage-parsing.md) | 📝 |
+| 阶段 | # | 主题 | 我要读懂/验证的核心 | 笔记 | 状态 |
+|------|---|------|----------------------|------|:--:|
+| 0 | L0 | 环境与工程基建 | Docker Compose 编排、端口排查、ddl-auto 陷阱 | [01](my-learning/notes/01-env-setup.md) · [tech-qa/02](my-learning/notes/tech-qa/02-jpa-transaction.md) | ✅ |
+| 1 | L1 | Spring Boot 三层地基 | DI / 事务边界 / 派生查询 / 异常体系 | [tech-qa/01](my-learning/notes/tech-qa/01-spring-boot.md) | ✅ |
+| 1 | L2 | 限流与 AOP | Lua 滑动窗口、注解驱动、多维度 | [tech-qa/10](my-learning/notes/tech-qa/10-observability-rate-limit.md) | 📝 |
+| 1 | L3 | 统一评估 + 文件/导出 | 共用评估、S3、Tika 解析、iText | [tech-qa/11](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) · [tech-qa/09](my-learning/notes/tech-qa/09-file-storage-parsing.md) | 📝 |
+| 2 | L4 | Spring AI 多 Provider | ChatClient 缓存、回退、Advisor、密钥加密 | [modules/06](my-learning/notes/modules/06-llmprovider.md) · [tech-qa/04](my-learning/notes/tech-qa/04-llm-integration.md) | 📝 |
+| 2 | L5 | 结构化输出与可靠性 | 重试循环、schema 校验、`BeanOutputConverter` | [tech-qa/11](my-learning/notes/tech-qa/11-ai-quality-evaluation.md) | 📝 |
+| 2 | L6 | Prompt 工程与注入防护 | 模板化、sanitizer、system/user 分离 | [tech-qa/05](my-learning/notes/tech-qa/05-prompt-engineering.md) | 📝 |
+| 2 | L7 | RAG 检索增强全链路 | 向量化、Query Rewrite、TopK/阈值 | [modules/04](my-learning/notes/modules/04-knowledgebase.md) · [tech-qa/06](my-learning/notes/tech-qa/06-rag.md) | 📝 |
+| 2 | L8 | Agent / 工具调用 | tool-calling 原理、技能编排 | [tech-qa/07](my-learning/notes/tech-qa/07-tool-calling-agent.md) | 📝 |
+| 3 | L9 | Redis Stream 异步 | 消费者组、ACK、Pending 回收、死信 | [tech-qa/03](my-learning/notes/tech-qa/03-redis.md) | 📝 |
+| 3 | L10 | 实时语音 WebSocket | VAD 断句、级联管线、首包延迟 | [modules/03](my-learning/notes/modules/03-voiceinterview.md) · [tech-qa/08](my-learning/notes/tech-qa/08-ai-app-dev-workflow.md) | 📝 |
 
 ### G 系列 · 补齐项目没覆盖的生产化能力
 
@@ -81,15 +108,15 @@
 ### L 深挖 · 项目已有实现
 
 - **L1 三层地基**：`modules/interview/InterviewController.java` → `service/InterviewPersistenceService.java` → `repository/InterviewSessionRepository.java`；`common/result/Result.java`、`common/exception/*`、`common/config/*Properties.java`
-- **L2 多 Provider**：`common/ai/LlmProviderRegistry.java`（ChatClient 缓存 / 回退 / 三变体 / Advisor 装配）、`common/config/LlmProviderProperties.java`、`common/ai/ApiPathResolver.java`、`modules/llmprovider/*`（配置落库 + 密钥加密）
-- **L3 结构化输出**：`common/ai/StructuredOutputInvoker.java`（重试 + schema 校验 + `app.ai.structured_output.*` 指标）、`resume/service/ResumeGradingService.java`
-- **L4 Prompt 安全**：`common/ai/PromptSanitizer.java`、`PromptSecurityConstants.java`、`resources/prompts/*.st`
-- **L5 RAG 全链路**：`modules/knowledgebase/service/KnowledgeBaseVectorService.java`、`KnowledgeBaseQueryService.java`（Query Rewrite / 动态 TopK）、`listener/VectorizeStream*`（异步向量化）
-- **L6 工具调用**：`common/ai/AgentUtilsConfiguration.java`、`LlmProviderRegistry` 的 tools/voice 变体、`resources/skills/`
-- **L7 异步任务**：`common/async/AbstractStreamProducer.java` / `AbstractStreamConsumer.java`、`infrastructure/redis/RedisService.java`（`XAUTOCLAIM` 回收）、各模块 `listener/`
-- **L8 限流 AOP**：`common/aspect/RateLimitAspect.java`（Lua + Redisson）、`common/annotation/RateLimit.java`
-- **L9 实时语音**：`modules/voiceinterview/handler/VoiceInterviewWebSocketHandler.java`、`service/QwenAsrService.java` / `QwenTtsService.java` / `DashscopeLlmService.java`、`config/WebSocketConfig.java`
-- **L10 评估与基建**：`common/evaluation/UnifiedEvaluationService.java`、`infrastructure/file/*`（S3 / Tika / 去重）、`infrastructure/export/`（iText）、`infrastructure/mapper/`（MapStruct）
+- **L2 限流 AOP**：`common/aspect/RateLimitAspect.java`（Lua + Redisson）、`common/annotation/RateLimit.java`
+- **L3 评估与文件基建**：`common/evaluation/UnifiedEvaluationService.java`、`infrastructure/file/*`（S3 / Tika / 去重）、`infrastructure/export/`（iText）、`infrastructure/mapper/`（MapStruct）
+- **L4 多 Provider**：`common/ai/LlmProviderRegistry.java`（ChatClient 缓存 / 回退 / 三变体 / Advisor 装配）、`common/config/LlmProviderProperties.java`、`common/ai/ApiPathResolver.java`、`modules/llmprovider/*`（配置落库 + 密钥加密）
+- **L5 结构化输出**：`common/ai/StructuredOutputInvoker.java`（重试 + schema 校验 + `app.ai.structured_output.*` 指标）、`resume/service/ResumeGradingService.java`
+- **L6 Prompt 安全**：`common/ai/PromptSanitizer.java`、`PromptSecurityConstants.java`、`resources/prompts/*.st`
+- **L7 RAG 全链路**：`modules/knowledgebase/service/KnowledgeBaseVectorService.java`、`KnowledgeBaseQueryService.java`（Query Rewrite / 动态 TopK）、`listener/VectorizeStream*`（异步向量化）
+- **L8 工具调用**：`common/ai/AgentUtilsConfiguration.java`、`LlmProviderRegistry` 的 tools/voice 变体、`resources/skills/`
+- **L9 异步任务**：`common/async/AbstractStreamProducer.java` / `AbstractStreamConsumer.java`、`infrastructure/redis/RedisService.java`（`XAUTOCLAIM` 回收）、各模块 `listener/`
+- **L10 实时语音**：`modules/voiceinterview/handler/VoiceInterviewWebSocketHandler.java`、`service/QwenAsrService.java` / `QwenTtsService.java` / `DashscopeLlmService.java`、`config/WebSocketConfig.java`
 
 ### G 补齐 · 我要新增的改动范围
 

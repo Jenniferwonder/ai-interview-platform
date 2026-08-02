@@ -104,5 +104,5 @@ LlmProviderRegistry          ← 构造并缓存 ChatClient / EmbeddingModel
 ## 8. 想动手改的话
 
 1. **补 Provider 维度指标**：调用成功率、延迟、token 消耗按 `provider` 打标签。
-2. **加一个 OpenAI 兼容 Provider**：验证运行时切换与默认回退（学习计划 L2 的小验证）。
+2. **加一个 OpenAI 兼容 Provider**：验证运行时切换与默认回退（学习计划 L4 的小验证）。
 3. **收紧连通性测试**：显式禁止内网/回环地址，超时更短。
